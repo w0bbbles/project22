@@ -1,0 +1,35 @@
+{
+  "name": "project-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  	"start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "js-sha256": "^0.9.0",
+    "method-override": "^3.0.0",
+    "pg": "^7.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w0bbbles/project2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/w0bbbles/project2/issues"
+  },
+  "homepage": "https://github.com/w0bbbles/project2#readme",
+  "description": "",
+
+  "engines" : {
+    "node" : "^12.6.0"
+  }
+}
