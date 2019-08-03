@@ -3,9 +3,9 @@ var React = require("react");
 class ShowEvent extends React.Component {
   render(){
 
-let dt = new Date(this.props.events.start_date)
-        let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
-        var start_date = dt.getDate( )+' '+months[dt.getMonth( )] + ' ' +dt.getFullYear( );
+    let dt = new Date(this.props.events.start_date)
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
+    var start_date = dt.getDate( )+' '+months[dt.getMonth( )] + ' ' +dt.getFullYear( );
 
 var navButtons;
 
