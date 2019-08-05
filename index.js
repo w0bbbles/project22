@@ -58,6 +58,8 @@ pool.on('error', function (err) {
 // Init express app
 const app = express();
 
+app.use(express.static(__dirname + '/public'));
+
 app.use(express.static(__dirname+'/public'));
 
 app.use(express.json());
@@ -109,13 +111,41 @@ app.get('/', (request, response) => {
     });
 });
 
+
+app.get('/user/event', (request, response) => {
+  // query database for all pokemon
+  const queryString = 'SELECT * from events';
+
+// use request.cookie.loggedIn to check if return true of false
+// if true change access = true
+// if false change access = false
+
+
+    pool.query(queryString, (err, result) => {
+
+      if (err) {
+        console.error('query error:', err.stack);
+        response.send( 'query error' );
+      } else {
+        // console.log('query result:', result);
+
+        let data = {
+            events: result.rows,
+            access: true
+        }
+
+        // response.send( result.rows );
+        response.render('home', data);
+        }
+    });
+});
 /**
  * ===================================
  * Create New Event
  * ===================================
  */
 
-app.get('/create', (request, response) => {
+app.get('/user/create', (request, response) => {
             let data = {
             access: true
             }
@@ -149,6 +179,30 @@ app.post('/newevent', (request, response) => {
  */
 
 app.get('/event/:id', (request, response) => {
+
+    const queryString = "SELECT * from events WHERE id=$1"
+    let VALUES = [request.params.id]
+
+    pool.query(queryString, VALUES, (err, result) => {
+
+      if (err) {
+        console.error('query error:', err.stack);
+        response.send( 'query error' );
+        } else {
+            console.log("result.rows: " + result.rows);
+
+            let data = {
+            access: false,
+            events: result.rows[0]
+            }
+            response.render('showevent', data);
+        }
+    })
+});
+
+
+
+app.get('/user/event/:id', (request, response) => {
 
     const queryString = "SELECT * from events WHERE id=$1"
     let VALUES = [request.params.id]
@@ -252,13 +306,8 @@ app.post('/login', (request, response)=>{
                       } else {
                         // console.log('query result:', result);
 
-                        let data = {
 
-                            events: result.rows,
-                            access: true
-                        }
-
-                        response.render('home', data);
+                        response.redirect('/user/event');
 
                         }
                     });
@@ -278,25 +327,7 @@ app.get('/logout',(request, response)=>{
     response.clearCookie('username');
     response.clearCookie('id');
 
-    const queryString = 'SELECT * from events';
-
-    pool.query(queryString, (err, result) => {
-
-      if (err) {
-        console.error('query error:', err.stack);
-        response.send( 'query error' );
-      } else {
-        // console.log('query result:', result);
-
-        let data = {
-            access: false,
-            events: result.rows
-        }
-
-        // response.send( result.rows );
-        response.render('home', data);
-        }
-    });
+    response.redirect('/');
 });
 
 /**

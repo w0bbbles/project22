@@ -9,7 +9,7 @@ class Home extends React.Component {
         let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sept','Oct','Nov','Dec'];
         var start_date = dt.getDate( )+' '+months[dt.getMonth( )] + ' ' +dt.getFullYear( );
 
-        let banana = '/event/'+ events.id;
+        let banana = '/user/event/'+ events.id;
     return(
 
             <tr>
@@ -26,7 +26,7 @@ var navButtons;
     if( this.props.access === true ){
         navButtons = (
             <React.Fragment>
-                <a className="nav-item nav-link" href="/create">Create Event<span class="sr-only">(current)</span></a>
+                <a className="nav-item nav-link" href="/user/create">Create Event<span class="sr-only">(current)</span></a>
                 <a className="nav-item nav-link" href="/logout">Log Out</a>
             </React.Fragment>
     );
@@ -47,9 +47,9 @@ var navButtons;
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
             <link rel={"stylesheet"} href={`/style.css`} />
         </head>
-            <body>
+            <body id='wallpaper'>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand" href="/">EVENTion</a>
+                    <a className="navbar-brand" href="#">EVENTion</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
