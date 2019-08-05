@@ -85,10 +85,11 @@ app.engine('jsx', reactEngine);
 app.get('/', (request, response) => {
   // query database for all pokemon
   const queryString = 'SELECT * from events';
-  var stuff;
+
 // use request.cookie.loggedIn to check if return true of false
-// if true change stuff = true
-// if false change stuff = false
+// if true change access = true
+// if false change access = false
+
 
     pool.query(queryString, (err, result) => {
 
@@ -96,10 +97,10 @@ app.get('/', (request, response) => {
         console.error('query error:', err.stack);
         response.send( 'query error' );
       } else {
-        console.log('query result:', result);
+        // console.log('query result:', result);
 
         let data = {
-            loggedIn : stuff,
+            // loggedIn: access,
             events: result.rows
         }
 
@@ -174,11 +175,6 @@ app.get('/event/:id', (request, response) => {
 
 app.get('/register/new',(request, response)=>{
 
-    // let loginSession = request.cookie('login');
-    //     if (loginSession) {
-    //         response.send("logged in");
-    //     }
-    //     else {
     response.render('register');
 });
 
@@ -227,7 +223,7 @@ app.post('/login', (request, response)=>{
             } else {
 
                 console.log(results.rows);
-                console.log("results.rows");
+                // console.log("results.rows");
 
                 if (results.rows.length === 0) {
 
@@ -235,9 +231,34 @@ app.post('/login', (request, response)=>{
                     response.redirect("/loginerror");
 
                 } else {
-//response.cookie("loggedIn", true)
+
                     console.log('BINGO YOURE IN!');
-                    response.redirect('/');
+
+                    response.cookie('username', results.rows[0].name);
+                    response.cookie('id', results.rows[0].id);
+                    response.cookie('loggedIn', true);
+
+                    const queryString = 'SELECT * from events'
+
+
+                    pool.query(queryString, (err, result) => {
+
+                      if (err) {
+                        console.error('query error:', err.stack);
+                        response.send( 'query error' );
+                      } else {
+                        // console.log('query result:', result);
+
+                        let data = {
+
+                            events: result.rows,
+                            access: true
+                        }
+
+                        response.render('home', data);
+
+                        }
+                    });
                 }
             }
         })
@@ -250,8 +271,10 @@ app.post('/login', (request, response)=>{
  */
 
 app.get('/logout',(request, response)=>{
+    response.clearCookie('loggedIn');
+    response.clearCookie('username');
+    response.clearCookie('id');
 
-    response.cookie('login', false);
 
     response.redirect('/');
 });

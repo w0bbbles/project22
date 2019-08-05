@@ -34,7 +34,7 @@ class Loginerror extends React.Component {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
                             {navButtons}
                         </div>
@@ -49,7 +49,7 @@ class Loginerror extends React.Component {
                       <br/>
                       <label>Looks like you're not registered or your login username/password was wrong</label>
                       <label>Try to log in again or register with us!</label>
-
+                      <br/>
                       <a href="/login/new"><button type="button" class="btn btn-secondary">Try Again</button></a>
                       <a href="/register/new"><button type="button" class="btn btn-primary">Register</button></a>
                     </div>

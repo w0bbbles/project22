@@ -34,7 +34,7 @@ class Login extends React.Component {
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
                             {navButtons}
                         </div>
@@ -43,16 +43,16 @@ class Login extends React.Component {
 
         <div className="container">
             <div className="row">
-                <div className="col-8">
+                <div className="col-6 offset-3">
                     <h1>Log In and create your own Evention!</h1>
                     <form action="/login" method="POST">
                         <div class="form-group">
                             <label for="users">Username</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="5 letter username" name="name"/>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="e.g. Donkey Kong" name="name"/>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Have a combination of letters and numbers" name="password"/>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter password" name="password"/>
                         </div>
 
                         <button type="submit" class="btn btn-primary">Login</button>
