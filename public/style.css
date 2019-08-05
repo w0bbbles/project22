@@ -1,3 +1,26 @@
 .maintable{
 	margin-top: 30px;
 }
+
+.login{
+	margin-top: 30px;
+}
+.loginerror{
+	margin-top: 30px;
+}
+
+.newevent{
+	margin-top: 30px;
+}
+
+.register{
+	margin-top: 30px;
+}
+
+.showevent{
+	margin-top: 30px;
+}
+
+#description{
+	margin: 0px, 0px, 0px, 0px;
+}

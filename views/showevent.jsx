@@ -9,7 +9,7 @@ class ShowEvent extends React.Component {
 
 var navButtons;
 
-    if( this.props.loggedIn === true ){
+    if( this.props.access === true ){
         navButtons = (
             <React.Fragment>
                 <a className="nav-item nav-link" href="/create">Create Event<span class="sr-only">(current)</span></a>
@@ -34,7 +34,7 @@ var navButtons;
             <link rel={"stylesheet"} href={`/style.css`} />
         </head>
             <body>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand" href="/">EVENTion</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -46,14 +46,15 @@ var navButtons;
                     </div>
                 </nav>
 
-            <div className="container">
+            <div className="container showevent">
                 <div className="row">
                     <div className="col-8">
                         <h1>Your Event</h1>
-                            <p>{this.props.events.name}</p>
-                            <p>{start_date}</p>
-                            <p>{this.props.events.location}</p>
-                            <p>{this.props.events.url}</p>
+                            <p>Event name: {this.props.events.name}</p>
+                            <p>Date: {start_date}</p>
+                            <p>Location: {this.props.events.location}</p>
+                            <p>Event URL: {this.props.events.url}</p>
+                            <p>Description:</p>
                             <p>{this.props.events.description}</p>
                           <a href="/"><button type="button" class="btn btn-primary">back</button></a>
                     </div>

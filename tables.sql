@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS events (
     Start_Date TEXT,
     Location TEXT,
     URL TEXT,
-    Description TEXT
+    Description TEXT,
+    user_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS users (

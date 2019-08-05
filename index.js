@@ -100,7 +100,6 @@ app.get('/', (request, response) => {
         // console.log('query result:', result);
 
         let data = {
-            // loggedIn: access,
             events: result.rows
         }
 
@@ -117,16 +116,19 @@ app.get('/', (request, response) => {
  */
 
 app.get('/create', (request, response) => {
+            let data = {
+            access: true
+            }
 
-    response.render('newevent');
+    response.render('newevent', data);
 });
 
 app.post('/newevent', (request, response) => {
     console.log("Request body: ",request.body);
 
-    const queryString = "INSERT INTO events (name, start_date, location, url, description) VALUES ($1, $2, $3, $4, $5) returning id";
+    const queryString = "INSERT INTO events (name, start_date, location, url, description, user_id) VALUES ($1, $2, $3, $4, $5, $6) returning id";
 
-    const VALUES = [request.body.name, request.body.start_date, request.body.location, request.body.url, request.body.description];
+    const VALUES = [request.body.name, request.body.start_date, request.body.location, request.body.url, request.body.description, request.cookies.id];
 
     pool.query(queryString, VALUES, (err, result) => {
 
@@ -160,6 +162,7 @@ app.get('/event/:id', (request, response) => {
             console.log("result.rows: " + result.rows);
 
             let data = {
+            access: true,
             events: result.rows[0]
             }
             response.render('showevent', data);
@@ -275,8 +278,25 @@ app.get('/logout',(request, response)=>{
     response.clearCookie('username');
     response.clearCookie('id');
 
+    const queryString = 'SELECT * from events';
 
-    response.redirect('/');
+    pool.query(queryString, (err, result) => {
+
+      if (err) {
+        console.error('query error:', err.stack);
+        response.send( 'query error' );
+      } else {
+        // console.log('query result:', result);
+
+        let data = {
+            access: false,
+            events: result.rows
+        }
+
+        // response.send( result.rows );
+        response.render('home', data);
+        }
+    });
 });
 
 /**

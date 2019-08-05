@@ -4,7 +4,7 @@ class Login extends React.Component {
   render() {
     var navButtons;
 
-    if( this.props.loggedIn === true ){
+    if( this.props.access === true ){
         navButtons = (
             <React.Fragment>
                 <a className="nav-item nav-link" href="/create">Create Event<span class="sr-only">(current)</span></a>
@@ -29,7 +29,7 @@ class Login extends React.Component {
             <link rel={"stylesheet"} href={`/style.css`} />
         </head>
             <body>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <a className="navbar-brand" href="/">EVENTion</a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -41,10 +41,10 @@ class Login extends React.Component {
                     </div>
                 </nav>
 
-        <div className="container">
+        <div className="container login">
             <div className="row">
                 <div className="col-6 offset-3">
-                    <h1>Log In and create your own Evention!</h1>
+                    <h1>Log In</h1>
                     <form action="/login" method="POST">
                         <div class="form-group">
                             <label for="users">Username</label>
